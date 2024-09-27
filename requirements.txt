@@ -1,0 +1,7 @@
+flask
+geopandas==0.13.2
+shapely
+pyproj
+pandas
+fiona==1.8.22
+gunicorn
