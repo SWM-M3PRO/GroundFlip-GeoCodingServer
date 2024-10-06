@@ -25,9 +25,10 @@ def load_all_shp():
     merged_gdf = gpd.GeoDataFrame(pd.concat(gdf_list, ignore_index=True))
     merged_gdf = merged_gdf.rename(columns={'SGG_NM': 'region_name'}) 
     return merged_gdf
+
 def load_region_info():
     df = pd.read_csv('region.csv')
-    name_id_dict = pd.Series(df.id.values, index=df.name).to_dict()
+    name_id_dict = pd.Series(df.region_id.values, index=df.name).to_dict()
     print('[성공] 지역 정보 불러오기 성공')
     return name_id_dict
 
@@ -51,8 +52,14 @@ def find_district_api():
     lat = float(request.args.get('lat'))
 
     region_name = find_district(lon, lat)
+
     if region_name:
-        region_id = region_dict[region_name]
+        area_name_split = region_name.split(' ')
+        if len(area_name_split) == 1:
+            region_key = area_name_split[0]
+        else:
+            region_key = " ".join(area_name_split[1:])
+        region_id = region_dict[region_key]
     else:
         region_id = None
     response_data = {'region': region_name, "region_id": region_id}
