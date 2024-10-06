@@ -43,6 +43,6 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 # 13. Flask 서버 실행
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:3030", "server:app"]
+CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:3030", "server:app"]
 # 또는 gunicorn을 사용하는 경우
 # CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:3030", "server:app"]
