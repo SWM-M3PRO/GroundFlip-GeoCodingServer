@@ -54,11 +54,6 @@ def find_district_api():
     region_name = find_district(lon, lat)
 
     if region_name:
-        # area_name_split = region_name.split(' ')
-        # if len(area_name_split) == 1:
-        #     region_key = area_name_split[0]
-        # else:
-        #     region_key = " ".join(area_name_split[1:])
         region_id = region_dict[region_name]
     else:
         region_id = None

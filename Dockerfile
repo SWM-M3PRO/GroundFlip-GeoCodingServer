@@ -1,5 +1,5 @@
 # 1. 빌드 단계: 필요한 패키지 설치 및 빌드
-FROM python:3.8-slim AS builder
+FROM python:3.9-slim AS builder
 
 # 2. 시스템 의존성 설치 (빌드 도구 및 GDAL)
 RUN apt-get update && apt-get install -y \
@@ -19,7 +19,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --prefix="/install" -r requirements.txt
 
 # 6. 런타임 단계: 경량 이미지에서 애플리케이션 실행
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 # 7. GDAL 라이브러리 복사
 RUN apt-get update && apt-get install -y \
